@@ -47,6 +47,12 @@ function driversLicence6(passedTest) {
 
 driversLicence6(true);
 
+===========================================================================================================================================
+
+=> let and const are blocked scoped whereas var is function scoped. It means if we have defined let and const varibales inside an if block, then we can 
+    not access them outside that block. But for var if we have defined it in a function it can be used outside of if block
+=> we can use "var" before its been defined, it will give undefined, but with "let" and "const" it will give error 
+===========================================================================================================================================
 
 
 var i = 23;
@@ -102,7 +108,7 @@ function calcAge(year) {
 // ES5
 console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today, he is ' + calcAge(yearOfBirth) + ' years old.');
 
-// ES6
+// ES6 - Below is "template literals". It uses back ticks `` and ${}
 console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(yearOfBirth)} years old.`);
 
 

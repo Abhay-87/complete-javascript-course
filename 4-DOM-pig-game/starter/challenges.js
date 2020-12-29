@@ -33,10 +33,17 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function(){
+    var finalScore = 30;
     scores[activePlayer] += roundScore;
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+    var input = document.querySelector('.final-score').value;
+    //Undefined, null, 0  or "" are coerced to False
+    if(input){
+        finalScore = input;
+    }
+    console.log(finalScore);
     
-    if(scores[activePlayer] >= 30){
+    if(scores[activePlayer] >= finalScore){
         document.getElementById('name-' + activePlayer).textContent = 'Winner';
         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
         document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
@@ -73,6 +80,9 @@ function init(){
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
+    
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
     
     document.querySelector('.btn-roll').disabled = false;
     document.querySelector('.btn-hold').disabled = false;

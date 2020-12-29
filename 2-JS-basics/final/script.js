@@ -20,7 +20,7 @@ console.log(job);
 // Variable naming rules
 var _3years = 3;
 var johnMark = 'John and MArk';
-var if = 23;
+//var if = 23;
 */
 
 
@@ -250,6 +250,8 @@ switch (job) {
 }
 
 age = 56;
+Here we have kept true in switch is beacuse we want any of conditions to be true.
+That's how we can use switch for conditional conditions.
 switch (true) {
     case age < 13:
         console.log(firstName + ' is a boy.');
@@ -270,21 +272,29 @@ switch (true) {
 /*****************************
 * Truthy and Falsy values and equality operators
 */
-/*
+
 // falsy values: undefined, null, 0, '', NaN
 // truthy values: NOT falsy values
-
+/*
 var height;
 
 height = 23;
 
-if (height || height === 0) {
+//First check in below OR clause is to check whether variable height is defined or not and then 
+//we are checking the value of that variable.
+//If the value of height would be defined as 0, then first part of OR would have been came out as false,
+//because 0 is a falsy value just as undefined is.
+
+if (height || height==23) {
     console.log('Variable is defined');
 } else {
     console.log('Variable has NOT been defined');
 }
 
 // Equality operators
+// 1. == it does type coercion, which means it will convert 23 in single quotes to int.
+// 2. === its strict
+
 if (height === '23') {
     console.log('The == operator does type coercion!');
 }
@@ -373,10 +383,10 @@ yearsUntilRetirement(1969, 'Jane');
 * Function Statements and Expressions
 */
 /*
-// Function declaration
+// Function declaration - when we declare the function
 // function whatDoYouDo(job, firstName) {}
 
-// Function expression
+// Function expression - when we pass function to a variable
 var whatDoYouDo = function(job, firstName) {
     switch(job) {
         case 'teacher':
@@ -393,6 +403,12 @@ var whatDoYouDo = function(job, firstName) {
 console.log(whatDoYouDo('teacher', 'John'));
 console.log(whatDoYouDo('designer', 'Jane'));
 console.log(whatDoYouDo('retired', 'Mark'));
+
+
+//All the above code bringds another point of discussion ==> Statement vs Expression
+1. Statement - It doesn't return anything. e.g. A function declaration or a simple if statement. 
+2. Expression  - It does return something. e.g. A function expression, a condition written in if statement e.g. if(3>2), in here u can
+   see that 3>2 will return true. That's why its called as expression.
 */
 
 
@@ -450,6 +466,39 @@ In the end, John would like to have 2 arrays:
 
 GOOD LUCK 😀
 */
+
+/*****************************
+* CODING CHALLENGE 3
+* My Solution
+*/
+
+/*
+function tipCalculator(billAmnt){
+    switch(true){
+        case billAmnt < 50 :
+            return billAmnt *0.2;
+        case (billAmnt >= 50 && billAmnt < 200):
+            return billAmnt * 0.15;
+        case (billAmnt > 200):
+            return billAmnt * 0.1;
+    }
+}
+var bill = [124, 48, 268];
+var tips = [tipCalculator(bill[0]),
+            tipCalculator(bill[1]),
+            tipCalculator(bill[2])];
+
+console.log("tips ->"+tips);
+
+var totalAmount = [bill[0]+tips[0], 
+                   bill[1]+tips[1], 
+                   bill[2]+tips[2]];
+console.log(totalAmount);
+
+
+
+
+
 /*
 function tipCalculator(bill) {
     var percentage;
@@ -546,6 +595,35 @@ Remember: BMI = mass / height^2 = mass / (height * height). (mass in kg and heig
 
 GOOD LUCK 😀
 */
+
+/*****************************
+* CODING CHALLENGE 4
+* My solution
+*/
+/*var Mark = {
+    fullName: 'Mark Boucher',
+    mass:110,
+    height: 1.90,
+    calcBMI: function(){
+      this.bmi=this.mass / (this.height*this.height);
+      return this.bmi;
+    }
+}
+
+var John = {
+    fullName: 'John Khalco',
+    mass: 80,
+    height: 1.87,
+    calcBMI: function(){
+        this.bmi=this.mass / (this.height*this.height);
+        return this.bmi;
+    }
+}
+console.log(John.calcBMI() > Mark.calcBMI()? 'John --> '+John.bmi : 'Mark --> '+Mark.bmi);
+
+*/
+
+
 /*
 var john = {
     fullName: 'John Smith',
@@ -656,6 +734,96 @@ Mark likes to tip 20% of the bill when the bill is less than $100, 10% when the 
 
 GOOD LUCK 😀
 */
+
+/*****************************
+* CODING CHALLENGE 5
+* My Solution
+*/
+/*
+var John = {
+    bills: [124, 48, 268, 42],
+    tips: [],
+    finalAmnt: [],
+    tipCalculator: function(){
+        for(var i=0; i<this.bills.length; i++){
+            if(this.bills[i]<50){
+                var tipAmnt=this.bills[i]*0.2;
+                this.tips.push(tipAmnt);
+                this.finalAmnt.push(tipAmnt+this.bills[i]);
+            }else if(this.bills[i]>50 && this.bills[i]<=200){
+                var tipAmnt1=this.bills[i]*0.15;
+                this.tips.push(tipAmnt1);
+                this.finalAmnt.push(tipAmnt1+this.bills[i]);
+            }else{
+                var tipAmnt2=this.bills[i]*0.1;
+                this.tips.push(tipAmnt2);
+                this.finalAmnt.push(tipAmnt2+this.bills[i]);
+            }
+        }
+    }
+    
+}
+console.log('=========John expenditures ==============');
+John.tipCalculator();
+console.log('Tips paid ',John.tips);
+console.log('Final Amount paid',John.finalAmnt);
+console.log('===========================================');
+
+var Mark = {
+    bills: [77, 375, 110, 45],
+    tips: [],
+    finalAmnt: [],
+    tipCalculator: function(){
+        for(var i=0; i<this.bills.length; i++){
+            if(this.bills[i]<100){
+                var tipAmnt=this.bills[i]*0.2;
+                this.tips.push(tipAmnt);
+                this.finalAmnt.push(tipAmnt+this.bills[i]);
+            }else if(this.bills[i]>100 && this.bills[i]<=300){
+                var tipAmnt1=this.bills[i]*0.1;
+                this.tips.push(tipAmnt1);
+                this.finalAmnt.push(tipAmnt1+this.bills[i]);
+            }else{
+                var tipAmnt2=this.bills[i]*0.25;
+                this.tips.push(tipAmnt2);
+                this.finalAmnt.push(tipAmnt2+this.bills[i]);
+            }
+        }
+    }
+}
+console.log('=========Mark expenditures ==============');
+Mark.tipCalculator();
+console.log('Tips paid by Mark ',Mark.tips);
+console.log('Final Amount paid by Mark ',Mark.finalAmnt);
+console.log('===========================================');
+
+function averageTipCalculator(tips){
+    var num = tips.length;
+    var sum=0;
+    for(var i=0; i<tips.length;i++){
+        sum+=tips[i];
+    }
+    return sum/num;
+}
+
+console.log('=========Averag Tip expenditures ==============');
+var markTipAvg = averageTipCalculator(Mark.tips);
+console.log('Mark tips average ', markTipAvg);
+var johnTipAvg = averageTipCalculator(John.tips);
+console.log('John tips average ', johnTipAvg);
+if(markTipAvg > johnTipAvg){
+    console.log('Mark pays more generous tips ');
+}else if(johnTipAvg > markTipAvg){
+    console.log('John pays more generous tips ');
+}else {
+    console.log('John and Mark pays equal tips');
+}
+*/
+/*****************************
+* My solution ends
+*/
+
+
 
 /*
 var john = {

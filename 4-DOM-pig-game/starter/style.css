@@ -140,6 +140,21 @@ i {
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
+.final-score { 
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    /*Aboev 3 properties are used to align it in center*/
+    top: 520px;
+    color: #555;
+    font-size: 18px;
+    font-family: 'Lato';
+    text-align: center;
+    padding: 10px;
+    width: 160px;
+    text-transform: uppercase;
+}
+.final-score:focus {outline: none;}
 
 .dice {
     position: absolute;

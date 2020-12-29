@@ -10,6 +10,146 @@
     <h1>Asynchronous JavaScript</h1>
     <script>
         
+        /*const getRecipeId = function() {
+            const recipes = [23,45,36,78];
+            setTimeout(() => {
+                console.log(recipes);
+                
+                setTimeout(id => {
+                    const recipe = {title:'Eggs Shakshuka', publisher: 'Bella'}
+                    console.log(`${id} : ${recipe.title}`);
+                    
+                    setTimeout(pub => {
+                        const recipe = {title: 'Grilled Chicken Wings', publisher: 'Bella'}
+                        console.log(`Another recipe from ${pub} --> ${recipe.title}`);
+                    },1500, recipe.publisher);
+                },1500, recipes[3]);
+            }, 1500); 
+        }
+        getRecipeId();*/
+        
+        /*const recipeIds = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve([12,45,34,56]);
+            }, 1500);
+        });
+        
+        const getRecipe = recId => {
+         return new Promise((resolve, reject) => {
+             setTimeout((id) => {
+                 const recipe = {title:'Eggs Shakshuka', publisher: 'Bella'}
+                 resolve(`${id} : ${recipe.title}`);
+             }, 1500, recId);
+         });   
+        }
+        const recipeFromSamePublisher = publisher => {
+            return new Promise((resolve, reject) => {
+                setTimeout(pub => {
+                    const recipe = {title: 'Grilled Chicken Wings', publisher: 'Bella'}
+                    resolve(`Another recipe from ${pub} --> ${recipe.title}`);
+                }, 1500, publisher);
+            });
+        }*/
+        
+        //Consuming Promises in traditional way.
+        
+        /*recipeIds.then( ids => {
+            console.log(ids);
+            return getRecipe(ids[3]);
+        })
+        .then(recipe => {
+            console.log(recipe);
+            return recipeFromSamePublisher('Bella');
+        })
+        .then(recipe => {
+            console.log(recipe);
+        })
+        .catch(error => {
+            console.log('error occurred');
+        })*/
+        
+        /*
+        Consuming promises using Async/await - It's another way of consuming Promises. Usually we don't return 
+        anything from an async function, but async/await returns a promise which we can consume in a traditional way
+        */
+        
+        /*async function getAllRecipesAsync() {
+            const ids = await recipeIds;
+            console.log(ids);
+            const recipe = await getRecipe(ids[2]);
+            console.log(recipe);
+            const pubRecipe = await recipeFromSamePublisher('Bella');
+            console.log(pubRecipe);
+            
+            Below we are returning recipe. This will go as a Promise
+            and we can consume it in a traditional way.
+            
+            return recipe;
+        }
+        
+        getAllRecipesAsync().then( result => console.log(`${result} is best recipe`));*/
+        
+        
+        
+        /*
+        ======== using fetch for ajax calls ===========
+        */
+        /*function getWeather(woeid) {
+            fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
+            .then(result => {
+                console.log(result);
+                return result.json();
+            })
+            .then(data => {
+                console.log(data);
+                const today = data.consolidated_weather[0];
+                console.log(`today there is going to be ${today.weather_state_name}`);
+            })
+        }
+        getWeather(2487956);*/
+        
+        
+        async function getWeatherAW(woeid) {
+            try {
+                const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`);
+                console.log(result);
+                const data = await result.json();
+                console.log(data);
+                const today = data.consolidated_weather[0];
+                console.log(`today there is going to be ${today.weather_state_name}`);
+            }catch(error) {
+                console.log(error);
+            }
+        }
+        getWeatherAW(2487956);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </script>
 </body>
 </html>
